@@ -280,7 +280,8 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 20F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(283, 408);
+            this.AutoSize = true;
+            this.ClientSize = new System.Drawing.Size(282, 403);
             this.Controls.Add(this.txtBoxValue);
             this.Controls.Add(this.btnDivision);
             this.Controls.Add(this.btnMultiplication);
@@ -302,6 +303,8 @@
             this.Controls.Add(this.btnTwo);
             this.Controls.Add(this.btnOne);
             this.Controls.Add(this.txtScoreboard);
+            this.MaximumSize = new System.Drawing.Size(300, 450);
+            this.MinimumSize = new System.Drawing.Size(300, 450);
             this.Name = "FormCalculator";
             this.Text = "Калькулятор";
             this.ResumeLayout(false);
