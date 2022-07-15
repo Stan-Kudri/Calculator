@@ -1,4 +1,4 @@
-using Calculator.Domain;
+﻿using Calculator.Domain;
 
 namespace Calculator
 {
