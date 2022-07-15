@@ -1,8 +1,8 @@
 ﻿using System.Globalization;
 
-namespace Calculator
+namespace Calculator.Domain
 {
-    public class Calculator
+    public class MathCalculator
     {
         private readonly static char[] Operation = new char[] { '+', '-', '*', '/', '=' };
         private char _pastOperation = '=';
@@ -33,7 +33,9 @@ namespace Calculator
                 }
             }
             else if (x.Length == 0)
+            {
                 throw new ArgumentException("Неправильная числовая строка");
+            }
 
             _pastOperation = operation;
             return _valueResult;
@@ -63,7 +65,9 @@ namespace Calculator
                 return Eval(_valueResult, _valueOperand, _pastOperation);
             }
             else if (x.Length == 0)
+            {
                 throw new ArgumentException("Неправильная числовая строка");
+            }
 
             return _valueResult;
         }
@@ -78,19 +82,14 @@ namespace Calculator
                     return a - b;
                 case '*':
                     {
-                        if (a == 0)
-                            return b;
-                        else
-                            return a * b;
+                        return a == 0 ? b : a * b;
                     }
                 case '/':
                     {
                         if (b == 0)
                         {
-                            MessageBox.Show("Деление на 0 невозможно");
-                            return 0;
+                            throw new ArgumentException("Деление на 0 невозможно");
                         }
-                        //throw new ArgumentException("Деление на 0 невозможно");
                         return a / b;
                     }
                 case '=':

@@ -1,14 +1,16 @@
+using Calculator.Domain;
+
 namespace Calculator
 {
     public partial class FormCalculator : Form
     {
         private bool _numberSign = true;
-        private Calculator _calculator;
+        private MathCalculator _calculator;
 
         public FormCalculator()
         {
             InitializeComponent();
-            _calculator = new Calculator();
+            _calculator = new MathCalculator();
         }
 
         private void btnNumber_Click(object sender, EventArgs e)
@@ -28,7 +30,7 @@ namespace Calculator
         {
             txtScoreboard.Text = string.Empty;
             txtBoxValue.Text = string.Empty;
-            _calculator = new Calculator();
+            _calculator = new MathCalculator();
         }
 
         private void btnCancel_Click(object sender, EventArgs e)
