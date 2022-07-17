@@ -52,7 +52,7 @@ namespace Calculator
                 var tupleValuePad = ValueTxt();
                 var operation = char.Parse(((Button)sender).Text);
 
-                var valueTxtBox = _calculator.ArithmeticOperation(tupleValuePad.textFromOutputField, tupleValuePad.textFromInputPad, operation);
+                var valueTxtBox = _calculator.Eval(tupleValuePad.textFromOutputField, tupleValuePad.textFromInputPad, operation);
 
                 txtBoxValue.Text = valueTxtBox.ToString();
                 txtScoreboard.Text = string.Empty;
@@ -65,7 +65,7 @@ namespace Calculator
             {
                 var tupleValuePad = ValueTxt();
 
-                var valueTxtBox = _calculator.GetNumericResult(tupleValuePad.textFromOutputField, tupleValuePad.textFromInputPad);
+                var valueTxtBox = _calculator.Eval(tupleValuePad.textFromOutputField, tupleValuePad.textFromInputPad);
 
                 txtBoxValue.Text = valueTxtBox.ToString();
                 txtScoreboard.Text = string.Empty;

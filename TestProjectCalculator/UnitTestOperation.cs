@@ -17,7 +17,7 @@ namespace TestProjectCalculator
 
             for (var i = 0; i < NumberIterations; i++)
             {
-                valueResult = mathCalculator.ArithmeticOperation(valueResult.ToString(), valueOperand.ToString(), '+');
+                valueResult = mathCalculator.Eval(valueResult.ToString(), valueOperand.ToString(), '+');
             }
 
             Assert.Equal(expectResult, valueResult);
@@ -35,7 +35,7 @@ namespace TestProjectCalculator
             for (var i = 0; i < NumberIterations; i++)
             {
                 expectResult *= valueOperand;
-                valueResult = mathCalculator.ArithmeticOperation(valueResult.ToString(), valueOperand.ToString(), '*');
+                valueResult = mathCalculator.Eval(valueResult.ToString(), valueOperand.ToString(), '*');
             }
 
             Assert.Equal(expectResult, valueResult);
@@ -53,7 +53,7 @@ namespace TestProjectCalculator
             for (var i = 0; i < NumberIterations; i++)
             {
                 expectResult /= valueOperand;
-                valueResult = mathCalculator.ArithmeticOperation(valueResult.ToString(), valueOperand.ToString(), '/');
+                valueResult = mathCalculator.Eval(valueResult.ToString(), valueOperand.ToString(), '/');
             }
 
             expectResult = System.Math.Round(expectResult, 6);

@@ -1,4 +1,6 @@
-﻿namespace Calculator.Domain
+﻿using System.Globalization;
+
+namespace Calculator.Domain
 {
     public class MathCalculator
     {
@@ -7,7 +9,7 @@
         private decimal _valueResult;
         private decimal _valueOperand;
 
-        public decimal ArithmeticOperation(string outputValue, string inputValueOperand, char operation)
+        public decimal Eval(string outputValue, string inputValueOperand, char operation)
         {
 
             if (_pastOperation == ' ')
@@ -16,10 +18,10 @@
             if (!Operation.Contains(operation))
                 throw new ArgumentException("Неверная арифметическая операция");
 
-            if (decimal.TryParse(outputValue /*, NumberStyles.Number, CultureInfo.InvariantCulture*/, out var firstValue))
+            if (decimal.TryParse(outputValue, NumberStyles.AllowDecimalPoint, CultureInfo.InvariantCulture, out var firstValue))
                 _valueResult = firstValue;
 
-            if (decimal.TryParse(inputValueOperand, /*NumberStyles.Number, CultureInfo.InvariantCulture,*/ out var secondValue))
+            if (decimal.TryParse(inputValueOperand, NumberStyles.AllowDecimalPoint, CultureInfo.InvariantCulture, out var secondValue))
             {
                 if (outputValue.Length == 0)
                 {
@@ -31,7 +33,7 @@
                     {
                         _pastOperation = operation;
                     }
-                    _valueResult = Eval(_valueResult, secondValue, _pastOperation);
+                    _valueResult = ArithmeticOperation(_valueResult, secondValue, _pastOperation);
                 }
             }
             else if (outputValue.Length == 0)
@@ -43,32 +45,32 @@
             return Math.Round(_valueResult, 6);
         }
 
-        public decimal GetNumericResult(string outputValue, string inputValueOperand)
+        public decimal Eval(string outputValue, string inputValueOperand)
         {
 
             if (_pastOperation == ' ')
                 _pastOperation = '=';
 
-            if (decimal.TryParse(outputValue, /*NumberStyles.Number, CultureInfo.InvariantCulture,*/ out var firstValue))
+            if (decimal.TryParse(outputValue, NumberStyles.AllowDecimalPoint, CultureInfo.InvariantCulture, out var firstValue))
                 _valueResult = firstValue;
 
-            if (decimal.TryParse(inputValueOperand, /*NumberStyles.Number, CultureInfo.InvariantCulture,*/ out var secondValue))
+            if (decimal.TryParse(inputValueOperand, NumberStyles.AllowDecimalPoint, CultureInfo.InvariantCulture, out var secondValue))
             {
                 if (_pastOperation == '=')
                 {
-                    return secondValue;
+                    _valueResult = secondValue;
                 }
                 else
                 {
                     _valueOperand = secondValue;
-                    return Eval(_valueResult, secondValue, _pastOperation);
+                    _valueResult = ArithmeticOperation(_valueResult, secondValue, _pastOperation);
                 }
             }
             else if (inputValueOperand.Length == 0)
             {
                 if (_valueOperand == 0)
                     _valueOperand = _valueResult;
-                return Eval(_valueResult, _valueOperand, _pastOperation);
+                _valueResult = ArithmeticOperation(_valueResult, _valueOperand, _pastOperation);
             }
             else if (outputValue.Length == 0)
             {
@@ -78,7 +80,7 @@
             return Math.Round(_valueResult, 6);
         }
 
-        private static decimal Eval(decimal outputValue, decimal inputValueOperand, char operation)
+        private static decimal ArithmeticOperation(decimal outputValue, decimal inputValueOperand, char operation)
         {
             switch (operation)
             {
