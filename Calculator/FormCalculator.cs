@@ -49,13 +49,29 @@ namespace Calculator
         {
             if (CheckUsedOperation())
             {
-                var tupleValuePad = ValueTxt();
-                var operation = char.Parse(((Button)sender).Text);
+                try
+                {
+                    var tupleValuePad = ValueTxt();
+                    var operation = char.Parse(((Button)sender).Text);
 
-                var valueTxtBox = _calculator.Eval(tupleValuePad.textFromOutputField, tupleValuePad.textFromInputPad, operation);
+                    var valueTxtBox = _calculator.Eval(tupleValuePad.textFromOutputField, tupleValuePad.textFromInputPad, operation);
 
-                txtBoxValue.Text = valueTxtBox.ToString();
-                txtScoreboard.Text = string.Empty;
+                    txtBoxValue.Text = valueTxtBox.ToString();
+                }
+                catch (ArgumentException ex)
+                {
+                    txtBoxValue.Text = string.Empty;
+                    MessageBox.Show(ex.Message);
+                }
+                catch (OperationCanceledException ex)
+                {
+                    MessageBox.Show(ex.Message);
+                    Close();
+                }
+                finally
+                {
+                    txtScoreboard.Text = string.Empty;
+                }
             }
         }
 
@@ -63,12 +79,28 @@ namespace Calculator
         {
             if (CheckUsedOperation())
             {
-                var tupleValuePad = ValueTxt();
+                try
+                {
+                    var tupleValuePad = ValueTxt();
 
-                var valueTxtBox = _calculator.Eval(tupleValuePad.textFromOutputField, tupleValuePad.textFromInputPad);
+                    var valueTxtBox = _calculator.Eval(tupleValuePad.textFromOutputField, tupleValuePad.textFromInputPad);
 
-                txtBoxValue.Text = valueTxtBox.ToString();
-                txtScoreboard.Text = string.Empty;
+                    txtBoxValue.Text = valueTxtBox.ToString();
+                }
+                catch (ArgumentException ex)
+                {
+                    txtBoxValue.Text = string.Empty;
+                    MessageBox.Show(ex.Message);
+                }
+                catch (OperationCanceledException ex)
+                {
+                    MessageBox.Show(ex.Message);
+                    Close();
+                }
+                finally
+                {
+                    txtScoreboard.Text = string.Empty;
+                }
             }
         }
 
