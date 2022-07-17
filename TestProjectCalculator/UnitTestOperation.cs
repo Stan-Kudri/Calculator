@@ -6,16 +6,13 @@ namespace TestProjectCalculator
     public class UnitTestOperation
     {
         [Theory]
-        [InlineData(21, 3, 5)]
-        [InlineData(0, 2, 5)]
-        public void Summation_To_Value_Operand_Number_Iterations(decimal valueResult, decimal valueOperand, int NumberIterations)
+        [InlineData(21, 3, 5, 36)]
+        [InlineData(0, 2, 5, 10)]
+        public void Summation_To_Value_Operand_Number_Iterations(decimal valueResult, decimal valueOperand, int NumberIterations, decimal expectResult)
         {
             var mathCalculator = new MathCalculator();
 
-            var expectResult = valueResult + (NumberIterations * valueOperand);
-
-
-            for (var i = 0; i < NumberIterations; i++)
+            for (var i = 0; i <= NumberIterations; i++)
             {
                 valueResult = mathCalculator.Eval(valueResult.ToString(), valueOperand.ToString(), '+');
             }
@@ -24,16 +21,13 @@ namespace TestProjectCalculator
         }
 
         [Theory]
-        [InlineData(21, 3, 5)]
-        [InlineData(0, 2, 5)]
-        public void Subtraction_To_Value_Operand_Number_Iterations(decimal valueResult, decimal valueOperand, int NumberIterations)
+        [InlineData(21, 3, 5, 6)]
+        [InlineData(0, 2, 5, -10)]
+        public void Subtraction_To_Value_Operand_Number_Iterations(decimal valueResult, decimal valueOperand, int NumberIterations, decimal expectResult)
         {
             var mathCalculator = new MathCalculator();
 
-            var expectResult = valueResult - (NumberIterations * valueOperand);
-
-
-            for (var i = 0; i < NumberIterations; i++)
+            for (var i = 0; i <= NumberIterations; i++)
             {
                 valueResult = mathCalculator.Eval(valueResult.ToString(), valueOperand.ToString(), '-');
             }
@@ -42,35 +36,31 @@ namespace TestProjectCalculator
         }
 
         [Theory]
-        [InlineData(5, 5, 3)]
-        [InlineData(0, 2, 2)]
-        public void Multiplication_To_Value_Operand_Number_Iterations(decimal valueResult, decimal valueOperand, int NumberIterations)
+        [InlineData(5, 5, 3, 625)]
+        [InlineData(0, 2, 2, 0)]
+        public void Multiplication_To_Value_Operand_Number_Iterations(decimal valueResult, decimal valueOperand, int NumberIterations, decimal expectResult)
         {
             var mathCalculator = new MathCalculator();
 
-            var expectResult = valueResult;
-
-            for (var i = 0; i < NumberIterations; i++)
+            for (var i = 0; i <= NumberIterations; i++)
             {
-                expectResult *= valueOperand;
                 valueResult = mathCalculator.Eval(valueResult.ToString(), valueOperand.ToString(), '*');
             }
+
+            expectResult = System.Math.Round(expectResult, 6);
 
             Assert.Equal(expectResult, valueResult);
         }
 
         [Theory]
-        [InlineData(145, 3, 3)]
-        [InlineData(0, 2, 2)]
-        public void Division_To_Value_Operand_Number_Iterations(decimal valueResult, decimal valueOperand, int NumberIterations)
+        [InlineData(150, 5, 2, 6)]
+        [InlineData(0, 2, 2, 0)]
+        public void Division_To_Value_Operand_Number_Iterations(decimal valueResult, decimal valueOperand, int NumberIterations, decimal expectResult)
         {
             var mathCalculator = new MathCalculator();
 
-            var expectResult = valueResult;
-
-            for (var i = 0; i < NumberIterations; i++)
+            for (var i = 0; i <= NumberIterations; i++)
             {
-                expectResult /= valueOperand;
                 valueResult = mathCalculator.Eval(valueResult.ToString(), valueOperand.ToString(), '/');
             }
 

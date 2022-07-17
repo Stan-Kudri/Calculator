@@ -5,16 +5,12 @@ namespace Calculator.Domain
     public class MathCalculator
     {
         private readonly static char[] Operation = new char[] { '+', '-', '*', '/', '=' };
-        private char _pastOperation = ' ';
+        private char _pastOperation;
         private decimal _valueResult;
         private decimal _valueOperand;
 
         public decimal Eval(string outputValue, string inputValueOperand, char operation)
         {
-
-            if (_pastOperation == ' ')
-                _pastOperation = operation;
-
             if (!Operation.Contains(operation))
                 throw new ArgumentException("Неверная арифметическая операция");
 
@@ -27,7 +23,7 @@ namespace Calculator.Domain
                 {
                     _valueResult = secondValue;
                 }
-                else
+                else if (Operation.Contains(_pastOperation))
                 {
                     if (operation == '=')
                     {
@@ -47,10 +43,6 @@ namespace Calculator.Domain
 
         public decimal Eval(string outputValue, string inputValueOperand)
         {
-
-            if (_pastOperation == ' ')
-                _pastOperation = '=';
-
             if (decimal.TryParse(outputValue, NumberStyles.AllowDecimalPoint, CultureInfo.InvariantCulture, out var firstValue))
                 _valueResult = firstValue;
 
@@ -63,7 +55,8 @@ namespace Calculator.Domain
                 else
                 {
                     _valueOperand = secondValue;
-                    _valueResult = ArithmeticOperation(_valueResult, secondValue, _pastOperation);
+                    if (Operation.Contains(_pastOperation))
+                        _valueResult = ArithmeticOperation(_valueResult, secondValue, _pastOperation);
                 }
             }
             else if (inputValueOperand.Length == 0)
