@@ -58,12 +58,12 @@ namespace Calculator
 
                     txtBoxValue.Text = valueTxtBox.ToString();
                 }
-                catch (ArgumentException ex)
+                catch (DivideByZeroException ex)
                 {
                     txtBoxValue.Text = string.Empty;
                     MessageBox.Show(ex.Message);
                 }
-                catch (OperationCanceledException ex)
+                catch (Exception ex)
                 {
                     MessageBox.Show(ex.Message);
                     Close();
@@ -87,12 +87,12 @@ namespace Calculator
 
                     txtBoxValue.Text = valueTxtBox.ToString();
                 }
-                catch (ArgumentException ex)
+                catch (DivideByZeroException ex)
                 {
                     txtBoxValue.Text = string.Empty;
                     MessageBox.Show(ex.Message);
                 }
-                catch (OperationCanceledException ex)
+                catch (Exception ex)
                 {
                     MessageBox.Show(ex.Message);
                     Close();

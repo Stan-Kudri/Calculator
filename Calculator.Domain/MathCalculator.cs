@@ -89,7 +89,7 @@ namespace Calculator.Domain
                     {
                         if (inputValueOperand == 0)
                         {
-                            throw new ArgumentException("Деление на 0 невозможно");
+                            throw new DivideByZeroException("Деление на 0 невозможно");
                         }
                         return outputValue / inputValueOperand;
                     }
