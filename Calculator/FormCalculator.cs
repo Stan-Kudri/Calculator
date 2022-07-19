@@ -51,10 +51,10 @@ namespace Calculator
             {
                 try
                 {
-                    var tupleValuePad = ValueTxt();
+                    var (textFromInput, textFromOutput) = Scoreboard();
                     var operation = char.Parse(((Button)sender).Text);
 
-                    var valueTxtBox = _calculator.Eval(tupleValuePad.textFromOutputField, tupleValuePad.textFromInputPad, operation);
+                    var valueTxtBox = _calculator.Eval(textFromOutput, textFromInput, operation);
 
                     txtBoxValue.Text = valueTxtBox.ToString();
                 }
@@ -81,9 +81,9 @@ namespace Calculator
             {
                 try
                 {
-                    var tupleValuePad = ValueTxt();
+                    var (textFromInput, textFromOutput) = Scoreboard();
 
-                    var valueTxtBox = _calculator.Eval(tupleValuePad.textFromOutputField, tupleValuePad.textFromInputPad);
+                    var valueTxtBox = _calculator.Eval(textFromOutput, textFromInput);
 
                     txtBoxValue.Text = valueTxtBox.ToString();
                 }
@@ -116,7 +116,7 @@ namespace Calculator
             }
         }
 
-        private (string textFromInputPad, string textFromOutputField) ValueTxt() => (txtScoreboard.Text, txtBoxValue.Text);
+        private (string textFromInput, string textFromOutput) Scoreboard() => (txtScoreboard.Text, txtBoxValue.Text);
 
         private bool CheckUsedOperation() => txtBoxValue.Text.Length != 0 || txtScoreboard.Text.Length != 0;
     }
