@@ -29,7 +29,7 @@ namespace Calculator.Domain
                     {
                         _pastOperation = operation;
                     }
-                    _valueResult = ArithmeticOperation(_valueResult, secondValue, _pastOperation);
+                    _valueResult = Calculate(_valueResult, secondValue, _pastOperation);
                 }
             }
             else if (outputValue.Length == 0)
@@ -56,14 +56,14 @@ namespace Calculator.Domain
                 {
                     _valueOperand = secondValue;
                     if (Operation.Contains(_pastOperation))
-                        _valueResult = ArithmeticOperation(_valueResult, secondValue, _pastOperation);
+                        _valueResult = Calculate(_valueResult, secondValue, _pastOperation);
                 }
             }
             else if (inputValueOperand.Length == 0)
             {
                 if (_valueOperand == 0)
                     _valueOperand = _valueResult;
-                _valueResult = ArithmeticOperation(_valueResult, _valueOperand, _pastOperation);
+                _valueResult = Calculate(_valueResult, _valueOperand, _pastOperation);
             }
             else if (outputValue.Length == 0)
             {
@@ -73,33 +73,33 @@ namespace Calculator.Domain
             return Math.Round(_valueResult, 6);
         }
 
-        private static decimal ArithmeticOperation(decimal outputValue, decimal inputValueOperand, char operation)
+        private static decimal Calculate(decimal left, decimal right, char operation)
         {
             switch (operation)
             {
                 case '+':
-                    return outputValue + inputValueOperand;
+                    return left + right;
                 case '-':
-                    return outputValue - inputValueOperand;
+                    return left - right;
                 case '*':
                     {
-                        return outputValue == 0 ? outputValue : outputValue * inputValueOperand;
+                        return left == 0 ? left : left * right;
                     }
                 case '/':
                     {
-                        if (inputValueOperand == 0)
+                        if (right == 0)
                         {
                             throw new DivideByZeroException("Деление на 0 невозможно");
                         }
-                        return outputValue / inputValueOperand;
+                        return left / right;
                     }
                 case '=':
                     {
-                        if (outputValue == 0 || inputValueOperand == 0)
+                        if (left == 0 || right == 0)
                         {
                             return 0;
                         }
-                        return inputValueOperand;
+                        return right;
                     }
             }
             throw new OperationCanceledException("Неизвестный оператор");
