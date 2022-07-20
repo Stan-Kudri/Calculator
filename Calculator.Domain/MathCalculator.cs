@@ -14,10 +14,10 @@ namespace Calculator.Domain
             if (!Operation.Contains(operation))
                 throw new ArgumentException("Неверная арифметическая операция");
 
-            if (decimal.TryParse(outputValue, NumberStyles.AllowDecimalPoint, CultureInfo.InvariantCulture, out var firstValue))
+            if (TryParseValue(outputValue, out var firstValue))
                 _valueResult = firstValue;
 
-            if (decimal.TryParse(inputValueOperand, NumberStyles.AllowDecimalPoint, CultureInfo.InvariantCulture, out var secondValue))
+            if (TryParseValue(inputValueOperand, out var secondValue))
             {
                 if (outputValue.Length == 0)
                 {
@@ -43,10 +43,10 @@ namespace Calculator.Domain
 
         public decimal Eval(string outputValue, string inputValueOperand)
         {
-            if (decimal.TryParse(outputValue, NumberStyles.AllowDecimalPoint, CultureInfo.InvariantCulture, out var firstValue))
+            if (TryParseValue(outputValue, out var firstValue))
                 _valueResult = firstValue;
 
-            if (decimal.TryParse(inputValueOperand, NumberStyles.AllowDecimalPoint, CultureInfo.InvariantCulture, out var secondValue))
+            if (TryParseValue(inputValueOperand, out var secondValue))
             {
                 if (_pastOperation == '=')
                 {
@@ -73,6 +73,18 @@ namespace Calculator.Domain
             return Math.Round(_valueResult, 6);
         }
 
+        private bool TryParseValue(string txt, out decimal result)
+        {
+            if (decimal.TryParse(txt, NumberStyles.AllowDecimalPoint, CultureInfo.InvariantCulture, out var values))
+            {
+                result = values;
+                return true;
+            }
+
+            result = default;
+            return false;
+        }
+
         private static decimal Calculate(decimal left, decimal right, char operation)
         {
             switch (operation)
@@ -83,7 +95,7 @@ namespace Calculator.Domain
                     return left - right;
                 case '*':
                     {
-                        return left == 0 ? left : left * right;
+                        return left * right;
                     }
                 case '/':
                     {

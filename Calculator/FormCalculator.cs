@@ -51,7 +51,7 @@ namespace Calculator
             {
                 try
                 {
-                    var (textFromInput, textFromOutput) = Scoreboard();
+                    var (textFromInput, textFromOutput) = GetValuesToCount();
                     var operation = char.Parse(((Button)sender).Text);
 
                     var valueTxtBox = _calculator.Eval(textFromOutput, textFromInput, operation);
@@ -81,7 +81,7 @@ namespace Calculator
             {
                 try
                 {
-                    var (textFromInput, textFromOutput) = Scoreboard();
+                    var (textFromInput, textFromOutput) = GetValuesToCount();
 
                     var valueTxtBox = _calculator.Eval(textFromOutput, textFromInput);
 
@@ -116,7 +116,7 @@ namespace Calculator
             }
         }
 
-        private (string textFromInput, string textFromOutput) Scoreboard() => (txtScoreboard.Text, txtBoxValue.Text);
+        private (string left, string right) GetValuesToCount() => (txtScoreboard.Text, txtBoxValue.Text);
 
         private bool CheckUsedOperation() => txtBoxValue.Text.Length != 0 || txtScoreboard.Text.Length != 0;
     }
