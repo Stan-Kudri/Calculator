@@ -101,7 +101,7 @@ namespace Calculator.Domain
                     {
                         if (right == 0)
                         {
-                            throw new DivideByZeroException("Деление на 0 невозможно");
+                            throw new ApplicationException("Деление на 0 невозможно");
                         }
                         return left / right;
                     }

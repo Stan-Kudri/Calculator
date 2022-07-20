@@ -1,4 +1,5 @@
 ﻿using Calculator.Domain;
+using ApplicationException = Calculator.Domain.ApplicationException;
 
 namespace Calculator
 {
@@ -58,7 +59,7 @@ namespace Calculator
 
                     txtBoxValue.Text = valueTxtBox.ToString();
                 }
-                catch (DivideByZeroException ex)
+                catch (ApplicationException ex)
                 {
                     txtBoxValue.Text = string.Empty;
                     MessageBox.Show(ex.Message);
@@ -87,7 +88,7 @@ namespace Calculator
 
                     txtBoxValue.Text = valueTxtBox.ToString();
                 }
-                catch (DivideByZeroException ex)
+                catch (ApplicationException ex)
                 {
                     txtBoxValue.Text = string.Empty;
                     MessageBox.Show(ex.Message);
