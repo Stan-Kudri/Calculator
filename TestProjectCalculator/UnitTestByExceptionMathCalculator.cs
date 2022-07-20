@@ -21,5 +21,16 @@ namespace TestProjectCalculator
             });
         }
 
+        [Theory]
+        [InlineData("kpl", "lp", typeof(ArgumentException))]
+        public void Bad_Format_Strings(string txtResult, string txtOperand, Type expectType)
+        {
+            var mathCalculator = new MathCalculator();
+
+            Assert.Throws(expectType, () =>
+            {
+                mathCalculator.Eval(txtResult.ToString(), txtOperand.ToString());
+            });
+        }
     }
 }

@@ -32,7 +32,7 @@ namespace Calculator.Domain
                     _valueResult = Calculate(_valueResult, secondValue, _pastOperation);
                 }
             }
-            else if (outputValue.Length == 0)
+            else if (outputValue.Length > 0 && inputValueOperand.Length > 0)
             {
                 throw new ArgumentException("Неправильная числовая строка");
             }
@@ -65,10 +65,13 @@ namespace Calculator.Domain
                     _valueOperand = _valueResult;
                 _valueResult = Calculate(_valueResult, _valueOperand, _pastOperation);
             }
-            else if (outputValue.Length == 0)
+            else if (outputValue.Length > 0 && inputValueOperand.Length > 0)
             {
                 throw new ArgumentException("Неправильная числовая строка");
             }
+
+            if (!Operation.Contains(_pastOperation))
+                _pastOperation = '=';
 
             return Math.Round(_valueResult, 6);
         }
