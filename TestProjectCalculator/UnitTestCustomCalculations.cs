@@ -1,4 +1,5 @@
 ﻿using Calculator.Domain;
+using System.Globalization;
 using Xunit;
 
 namespace TestProjectCalculator
@@ -12,11 +13,11 @@ namespace TestProjectCalculator
         {
             var mathCalculator = new MathCalculator();
 
-            valueResult = mathCalculator.Eval(valueResult.ToString(), string.Empty, '+');
+            valueResult = mathCalculator.Eval(valueResult.ToString(CultureInfo.InvariantCulture), string.Empty, '+');
 
             for (var i = 0; i < numberIterations; i++)
             {
-                valueResult = mathCalculator.Eval(valueResult.ToString(), string.Empty);
+                valueResult = mathCalculator.Eval(valueResult.ToString(CultureInfo.InvariantCulture), string.Empty);
             }
 
             Assert.Equal(expectResult, valueResult);
@@ -29,12 +30,12 @@ namespace TestProjectCalculator
         {
             var mathCalculator = new MathCalculator();
 
-            valueResult = mathCalculator.Eval(valueResult.ToString(), valueOperand.ToString(), '+');
-            valueResult = mathCalculator.Eval(valueResult.ToString(), valueOperand.ToString());
+            valueResult = mathCalculator.Eval(valueResult.ToString(CultureInfo.InvariantCulture), valueOperand.ToString(CultureInfo.InvariantCulture), '+');
+            valueResult = mathCalculator.Eval(valueResult.ToString(CultureInfo.InvariantCulture), valueOperand.ToString(CultureInfo.InvariantCulture));
 
             for (var i = 0; i < numberIterations - 1; i++)
             {
-                valueResult = mathCalculator.Eval(valueResult.ToString(), string.Empty);
+                valueResult = mathCalculator.Eval(valueResult.ToString(CultureInfo.InvariantCulture), string.Empty);
             }
 
             Assert.Equal(expectResult, valueResult);
@@ -47,11 +48,11 @@ namespace TestProjectCalculator
         {
             var mathCalculator = new MathCalculator();
 
-            valueResult = mathCalculator.Eval(valueResult.ToString(), string.Empty, '-');
+            valueResult = mathCalculator.Eval(valueResult.ToString(CultureInfo.InvariantCulture), string.Empty, '-');
 
             for (var i = 0; i < numberIterations; i++)
             {
-                valueResult = mathCalculator.Eval(valueResult.ToString(), string.Empty);
+                valueResult = mathCalculator.Eval(valueResult.ToString(CultureInfo.InvariantCulture), string.Empty);
             }
 
             Assert.Equal(expectResult, valueResult);
@@ -64,12 +65,12 @@ namespace TestProjectCalculator
         {
             var mathCalculator = new MathCalculator();
 
-            valueResult = mathCalculator.Eval(valueResult.ToString(), valueOperand.ToString(), '-');
-            valueResult = mathCalculator.Eval(valueResult.ToString(), valueOperand.ToString());
+            valueResult = mathCalculator.Eval(valueResult.ToString(CultureInfo.InvariantCulture), valueOperand.ToString(CultureInfo.InvariantCulture), '-');
+            valueResult = mathCalculator.Eval(valueResult.ToString(CultureInfo.InvariantCulture), valueOperand.ToString());
 
             for (var i = 0; i < numberIterations - 1; i++)
             {
-                valueResult = mathCalculator.Eval(valueResult.ToString(), string.Empty);
+                valueResult = mathCalculator.Eval(valueResult.ToString(CultureInfo.InvariantCulture), string.Empty);
             }
 
             Assert.Equal(expectResult, valueResult);
@@ -82,11 +83,11 @@ namespace TestProjectCalculator
         {
             var mathCalculator = new MathCalculator();
 
-            valueResult = mathCalculator.Eval(valueResult.ToString(), string.Empty, '*');
+            valueResult = mathCalculator.Eval(valueResult.ToString(CultureInfo.InvariantCulture), string.Empty, '*');
 
             for (var i = 0; i < numberIterations; i++)
             {
-                valueResult = mathCalculator.Eval(valueResult.ToString(), string.Empty);
+                valueResult = mathCalculator.Eval(valueResult.ToString(CultureInfo.InvariantCulture), string.Empty);
             }
 
             Assert.Equal(expectResult, valueResult);
@@ -99,12 +100,12 @@ namespace TestProjectCalculator
         {
             var mathCalculator = new MathCalculator();
 
-            valueResult = mathCalculator.Eval(valueResult.ToString(), valueOperand.ToString(), '*');
-            valueResult = mathCalculator.Eval(valueResult.ToString(), valueOperand.ToString());
+            valueResult = mathCalculator.Eval(valueResult.ToString(CultureInfo.InvariantCulture), valueOperand.ToString(CultureInfo.InvariantCulture), '*');
+            valueResult = mathCalculator.Eval(valueResult.ToString(CultureInfo.InvariantCulture), valueOperand.ToString(CultureInfo.InvariantCulture));
 
             for (var i = 0; i < numberIterations - 1; i++)
             {
-                valueResult = mathCalculator.Eval(valueResult.ToString(), string.Empty);
+                valueResult = mathCalculator.Eval(valueResult.ToString(CultureInfo.InvariantCulture), string.Empty);
             }
 
             Assert.Equal(expectResult, valueResult);
@@ -116,11 +117,11 @@ namespace TestProjectCalculator
         {
             var mathCalculator = new MathCalculator();
 
-            valueResult = mathCalculator.Eval(valueResult.ToString(), string.Empty, '/');
+            valueResult = mathCalculator.Eval(valueResult.ToString(CultureInfo.InvariantCulture), string.Empty, '/');
 
             for (var i = 0; i < numberIterations; i++)
             {
-                valueResult = mathCalculator.Eval(valueResult.ToString(), string.Empty);
+                valueResult = mathCalculator.Eval(valueResult.ToString(CultureInfo.InvariantCulture), string.Empty);
             }
 
             Assert.Equal(expectResult, valueResult);
@@ -132,12 +133,12 @@ namespace TestProjectCalculator
         {
             var mathCalculator = new MathCalculator();
 
-            valueResult = mathCalculator.Eval(valueResult.ToString(), valueOperand.ToString(), '/');
-            valueResult = mathCalculator.Eval(valueResult.ToString(), valueOperand.ToString());
+            valueResult = mathCalculator.Eval(valueResult.ToString(CultureInfo.InvariantCulture), valueOperand.ToString(CultureInfo.InvariantCulture), '/');
+            valueResult = mathCalculator.Eval(valueResult.ToString(CultureInfo.InvariantCulture), valueOperand.ToString(CultureInfo.InvariantCulture));
 
             for (var i = 0; i < numberIterations - 1; i++)
             {
-                valueResult = mathCalculator.Eval(valueResult.ToString(), string.Empty);
+                valueResult = mathCalculator.Eval(valueResult.ToString(CultureInfo.InvariantCulture), string.Empty);
             }
 
             Assert.Equal(expectResult, valueResult);

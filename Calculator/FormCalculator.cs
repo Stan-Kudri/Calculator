@@ -51,10 +51,10 @@ namespace Calculator
             {
                 try
                 {
-                    var (textFromInput, textFromOutput) = GetValuesToCount();
+                    var (left, right) = GetValuesToCount();
                     var operation = char.Parse(((Button)sender).Text);
 
-                    var valueTxtBox = _calculator.Eval(textFromOutput, textFromInput, operation);
+                    var valueTxtBox = _calculator.Eval(right, left, operation);
 
                     txtBoxValue.Text = valueTxtBox.ToString();
                 }
@@ -81,9 +81,9 @@ namespace Calculator
             {
                 try
                 {
-                    var (textFromInput, textFromOutput) = GetValuesToCount();
+                    var (left, right) = GetValuesToCount();
 
-                    var valueTxtBox = _calculator.Eval(textFromOutput, textFromInput);
+                    var valueTxtBox = _calculator.Eval(right, left);
 
                     txtBoxValue.Text = valueTxtBox.ToString();
                 }

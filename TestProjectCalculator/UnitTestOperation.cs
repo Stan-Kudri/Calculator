@@ -1,4 +1,5 @@
 using Calculator.Domain;
+using System.Globalization;
 using Xunit;
 
 namespace TestProjectCalculator
@@ -14,7 +15,7 @@ namespace TestProjectCalculator
 
             for (var i = 0; i <= NumberIterations; i++)
             {
-                valueResult = mathCalculator.Eval(valueResult.ToString(), valueOperand.ToString(), '+');
+                valueResult = mathCalculator.Eval(valueResult.ToString(CultureInfo.InvariantCulture), valueOperand.ToString(CultureInfo.InvariantCulture), '+');
             }
 
             Assert.Equal(expectResult, valueResult);
@@ -29,7 +30,7 @@ namespace TestProjectCalculator
 
             for (var i = 0; i <= NumberIterations; i++)
             {
-                valueResult = mathCalculator.Eval(valueResult.ToString(), valueOperand.ToString(), '-');
+                valueResult = mathCalculator.Eval(valueResult.ToString(CultureInfo.InvariantCulture), valueOperand.ToString(CultureInfo.InvariantCulture), '-');
             }
 
             Assert.Equal(expectResult, valueResult);
@@ -44,7 +45,7 @@ namespace TestProjectCalculator
 
             for (var i = 0; i <= NumberIterations; i++)
             {
-                valueResult = mathCalculator.Eval(valueResult.ToString(), valueOperand.ToString(), '*');
+                valueResult = mathCalculator.Eval(valueResult.ToString(CultureInfo.InvariantCulture), valueOperand.ToString(CultureInfo.InvariantCulture), '*');
             }
 
             expectResult = System.Math.Round(expectResult, 6);
@@ -61,7 +62,7 @@ namespace TestProjectCalculator
 
             for (var i = 0; i <= NumberIterations; i++)
             {
-                valueResult = mathCalculator.Eval(valueResult.ToString(), valueOperand.ToString(), '/');
+                valueResult = mathCalculator.Eval(valueResult.ToString(CultureInfo.InvariantCulture), valueOperand.ToString(CultureInfo.InvariantCulture), '/');
             }
 
             expectResult = System.Math.Round(expectResult, 6);
