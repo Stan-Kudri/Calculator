@@ -1,7 +1,6 @@
 ﻿using Calculator.Domain;
 using System;
 using Xunit;
-using ApplicationException = Calculator.Domain.ApplicationException;
 
 namespace TestProjectCalculator
 {

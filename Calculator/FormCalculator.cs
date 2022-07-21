@@ -1,5 +1,4 @@
 ﻿using Calculator.Domain;
-using ApplicationException = Calculator.Domain.ApplicationException;
 
 namespace Calculator
 {
