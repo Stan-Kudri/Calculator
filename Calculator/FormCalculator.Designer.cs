@@ -54,6 +54,7 @@
             // txtScoreboard
             // 
             this.txtScoreboard.Location = new System.Drawing.Point(12, 42);
+            this.txtScoreboard.MaxLength = 20;
             this.txtScoreboard.Name = "txtScoreboard";
             this.txtScoreboard.Size = new System.Drawing.Size(258, 27);
             this.txtScoreboard.TabIndex = 0;
@@ -270,10 +271,11 @@
             // 
             // txtBoxValue
             // 
-            this.txtBoxValue.Location = new System.Drawing.Point(164, 10);
+            this.txtBoxValue.Location = new System.Drawing.Point(78, 10);
+            this.txtBoxValue.MaxLength = 15;
             this.txtBoxValue.Name = "txtBoxValue";
             this.txtBoxValue.ReadOnly = true;
-            this.txtBoxValue.Size = new System.Drawing.Size(106, 27);
+            this.txtBoxValue.Size = new System.Drawing.Size(192, 27);
             this.txtBoxValue.TabIndex = 20;
             // 
             // FormCalculator
