@@ -78,7 +78,7 @@ namespace Calculator.Domain
 
         private bool TryParseValue(string txt, out decimal result)
         {
-            if (decimal.TryParse(txt, NumberStyles.AllowDecimalPoint, CultureInfo.InvariantCulture, out var values))
+            if (decimal.TryParse(txt, NumberStyles.AllowDecimalPoint | NumberStyles.AllowLeadingSign, CultureInfo.InvariantCulture, out var values))
             {
                 result = values;
                 return true;

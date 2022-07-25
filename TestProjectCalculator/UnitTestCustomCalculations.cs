@@ -13,11 +13,11 @@ namespace TestProjectCalculator
         {
             var mathCalculator = new MathCalculator();
 
-            valueResult = mathCalculator.Eval(valueResult.ToString(CultureInfo.InvariantCulture), string.Empty, '+');
+            valueResult = mathCalculator.Eval(valueToString(valueResult), string.Empty, '+');
 
             for (var i = 0; i < numberIterations; i++)
             {
-                valueResult = mathCalculator.Eval(valueResult.ToString(CultureInfo.InvariantCulture), string.Empty);
+                valueResult = mathCalculator.Eval(valueToString(valueResult), string.Empty);
             }
 
             Assert.Equal(expectResult, valueResult);
@@ -30,12 +30,12 @@ namespace TestProjectCalculator
         {
             var mathCalculator = new MathCalculator();
 
-            valueResult = mathCalculator.Eval(valueResult.ToString(CultureInfo.InvariantCulture), valueOperand.ToString(CultureInfo.InvariantCulture), '+');
-            valueResult = mathCalculator.Eval(valueResult.ToString(CultureInfo.InvariantCulture), valueOperand.ToString(CultureInfo.InvariantCulture));
+            valueResult = mathCalculator.Eval(valueToString(valueResult), valueToString(valueOperand), '+');
+            valueResult = mathCalculator.Eval(valueToString(valueResult), valueToString(valueOperand));
 
             for (var i = 0; i < numberIterations - 1; i++)
             {
-                valueResult = mathCalculator.Eval(valueResult.ToString(CultureInfo.InvariantCulture), string.Empty);
+                valueResult = mathCalculator.Eval(valueToString(valueResult), string.Empty);
             }
 
             Assert.Equal(expectResult, valueResult);
@@ -48,11 +48,11 @@ namespace TestProjectCalculator
         {
             var mathCalculator = new MathCalculator();
 
-            valueResult = mathCalculator.Eval(valueResult.ToString(CultureInfo.InvariantCulture), string.Empty, '-');
+            valueResult = mathCalculator.Eval(valueToString(valueResult), string.Empty, '-');
 
             for (var i = 0; i < numberIterations; i++)
             {
-                valueResult = mathCalculator.Eval(valueResult.ToString(CultureInfo.InvariantCulture), string.Empty);
+                valueResult = mathCalculator.Eval(valueToString(valueResult), string.Empty);
             }
 
             Assert.Equal(expectResult, valueResult);
@@ -65,12 +65,12 @@ namespace TestProjectCalculator
         {
             var mathCalculator = new MathCalculator();
 
-            valueResult = mathCalculator.Eval(valueResult.ToString(CultureInfo.InvariantCulture), valueOperand.ToString(CultureInfo.InvariantCulture), '-');
-            valueResult = mathCalculator.Eval(valueResult.ToString(CultureInfo.InvariantCulture), valueOperand.ToString());
+            valueResult = mathCalculator.Eval(valueToString(valueResult), valueToString(valueOperand), '-');
+            valueResult = mathCalculator.Eval(valueToString(valueResult), valueOperand.ToString());
 
             for (var i = 0; i < numberIterations - 1; i++)
             {
-                valueResult = mathCalculator.Eval(valueResult.ToString(CultureInfo.InvariantCulture), string.Empty);
+                valueResult = mathCalculator.Eval(valueToString(valueResult), string.Empty);
             }
 
             Assert.Equal(expectResult, valueResult);
@@ -83,11 +83,11 @@ namespace TestProjectCalculator
         {
             var mathCalculator = new MathCalculator();
 
-            valueResult = mathCalculator.Eval(valueResult.ToString(CultureInfo.InvariantCulture), string.Empty, '*');
+            valueResult = mathCalculator.Eval(valueToString(valueResult), string.Empty, '*');
 
             for (var i = 0; i < numberIterations; i++)
             {
-                valueResult = mathCalculator.Eval(valueResult.ToString(CultureInfo.InvariantCulture), string.Empty);
+                valueResult = mathCalculator.Eval(valueToString(valueResult), string.Empty);
             }
 
             Assert.Equal(expectResult, valueResult);
@@ -100,8 +100,8 @@ namespace TestProjectCalculator
         {
             var mathCalculator = new MathCalculator();
 
-            valueResult = mathCalculator.Eval(valueResult.ToString(CultureInfo.InvariantCulture), valueOperand.ToString(CultureInfo.InvariantCulture), '*');
-            valueResult = mathCalculator.Eval(valueResult.ToString(CultureInfo.InvariantCulture), valueOperand.ToString(CultureInfo.InvariantCulture));
+            valueResult = mathCalculator.Eval(valueToString(valueResult), valueToString(valueOperand), '*');
+            valueResult = mathCalculator.Eval(valueToString(valueResult), valueToString(valueOperand));
 
             for (var i = 0; i < numberIterations - 1; i++)
             {
@@ -117,11 +117,11 @@ namespace TestProjectCalculator
         {
             var mathCalculator = new MathCalculator();
 
-            valueResult = mathCalculator.Eval(valueResult.ToString(CultureInfo.InvariantCulture), string.Empty, '/');
+            valueResult = mathCalculator.Eval(valueToString(valueResult), string.Empty, '/');
 
             for (var i = 0; i < numberIterations; i++)
             {
-                valueResult = mathCalculator.Eval(valueResult.ToString(CultureInfo.InvariantCulture), string.Empty);
+                valueResult = mathCalculator.Eval(valueToString(valueResult), string.Empty);
             }
 
             Assert.Equal(expectResult, valueResult);
@@ -133,15 +133,17 @@ namespace TestProjectCalculator
         {
             var mathCalculator = new MathCalculator();
 
-            valueResult = mathCalculator.Eval(valueResult.ToString(CultureInfo.InvariantCulture), valueOperand.ToString(CultureInfo.InvariantCulture), '/');
-            valueResult = mathCalculator.Eval(valueResult.ToString(CultureInfo.InvariantCulture), valueOperand.ToString(CultureInfo.InvariantCulture));
+            valueResult = mathCalculator.Eval(valueToString(valueResult), valueToString(valueOperand), '/');
+            valueResult = mathCalculator.Eval(valueToString(valueResult), valueToString(valueOperand));
 
             for (var i = 0; i < numberIterations - 1; i++)
             {
-                valueResult = mathCalculator.Eval(valueResult.ToString(CultureInfo.InvariantCulture), string.Empty);
+                valueResult = mathCalculator.Eval(valueToString(valueResult), string.Empty);
             }
 
             Assert.Equal(expectResult, valueResult);
         }
+
+        private static string valueToString(decimal value) => value.ToString(CultureInfo.InvariantCulture);
     }
 }

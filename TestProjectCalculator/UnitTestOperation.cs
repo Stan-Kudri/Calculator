@@ -9,13 +9,14 @@ namespace TestProjectCalculator
         [Theory]
         [InlineData(21, 3, 5, 36)]
         [InlineData(0, 2, 5, 10)]
+        [InlineData(-585, 15, 5, -510)]
         public void Summation_To_Value_Operand_Number_Iterations(decimal valueResult, decimal valueOperand, int NumberIterations, decimal expectResult)
         {
             var mathCalculator = new MathCalculator();
 
             for (var i = 0; i <= NumberIterations; i++)
             {
-                valueResult = mathCalculator.Eval(valueResult.ToString(CultureInfo.InvariantCulture), valueOperand.ToString(CultureInfo.InvariantCulture), '+');
+                valueResult = mathCalculator.Eval(valueToString(valueResult), valueToString(valueOperand), '+');
             }
 
             Assert.Equal(expectResult, valueResult);
@@ -30,7 +31,7 @@ namespace TestProjectCalculator
 
             for (var i = 0; i <= NumberIterations; i++)
             {
-                valueResult = mathCalculator.Eval(valueResult.ToString(CultureInfo.InvariantCulture), valueOperand.ToString(CultureInfo.InvariantCulture), '-');
+                valueResult = mathCalculator.Eval(valueToString(valueResult), valueToString(valueOperand), '-');
             }
 
             Assert.Equal(expectResult, valueResult);
@@ -45,7 +46,7 @@ namespace TestProjectCalculator
 
             for (var i = 0; i <= NumberIterations; i++)
             {
-                valueResult = mathCalculator.Eval(valueResult.ToString(CultureInfo.InvariantCulture), valueOperand.ToString(CultureInfo.InvariantCulture), '*');
+                valueResult = mathCalculator.Eval(valueToString(valueResult), valueToString(valueOperand), '*');
             }
 
             expectResult = System.Math.Round(expectResult, 6);
@@ -62,12 +63,14 @@ namespace TestProjectCalculator
 
             for (var i = 0; i <= NumberIterations; i++)
             {
-                valueResult = mathCalculator.Eval(valueResult.ToString(CultureInfo.InvariantCulture), valueOperand.ToString(CultureInfo.InvariantCulture), '/');
+                valueResult = mathCalculator.Eval(valueToString(valueResult), valueToString(valueOperand), '/');
             }
 
             expectResult = System.Math.Round(expectResult, 6);
 
             Assert.Equal(expectResult, valueResult);
         }
+
+        private static string valueToString(decimal value) => value.ToString(CultureInfo.InvariantCulture);
     }
 }
