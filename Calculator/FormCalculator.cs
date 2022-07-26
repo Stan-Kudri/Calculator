@@ -1,14 +1,16 @@
+﻿using Calculator.Domain;
+
 namespace Calculator
 {
     public partial class FormCalculator : Form
     {
         private bool _numberSign = true;
-        private Calculator _calculator;
+        private MathCalculator _calculator;
 
         public FormCalculator()
         {
             InitializeComponent();
-            _calculator = new Calculator();
+            _calculator = new MathCalculator();
         }
 
         private void btnNumber_Click(object sender, EventArgs e)
@@ -28,7 +30,7 @@ namespace Calculator
         {
             txtScoreboard.Text = string.Empty;
             txtBoxValue.Text = string.Empty;
-            _calculator = new Calculator();
+            _calculator = new MathCalculator();
         }
 
         private void btnCancel_Click(object sender, EventArgs e)
@@ -47,13 +49,29 @@ namespace Calculator
         {
             if (CheckUsedOperation())
             {
-                var tupleValuePad = ValueTxt();
-                var operation = char.Parse(((Button)sender).Text);
+                try
+                {
+                    var (left, right) = GetValuesToCount();
+                    var operation = char.Parse(((Button)sender).Text);
 
-                var valueTxtBox = _calculator.ArithmeticOperation(tupleValuePad.textFromOutputField, tupleValuePad.textFromInputPad, operation);
+                    var valueTxtBox = _calculator.Eval(right, left, operation);
 
-                txtBoxValue.Text = valueTxtBox.ToString();
-                txtScoreboard.Text = string.Empty;
+                    txtBoxValue.Text = valueTxtBox.ToString();
+                }
+                catch (ApplicationException ex)
+                {
+                    txtBoxValue.Text = string.Empty;
+                    MessageBox.Show(ex.Message);
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show(ex.Message);
+                    Close();
+                }
+                finally
+                {
+                    txtScoreboard.Text = string.Empty;
+                }
             }
         }
 
@@ -61,12 +79,28 @@ namespace Calculator
         {
             if (CheckUsedOperation())
             {
-                var tupleValuePad = ValueTxt();
+                try
+                {
+                    var (left, right) = GetValuesToCount();
 
-                var valueTxtBox = _calculator.GetNumericResult(tupleValuePad.textFromOutputField, tupleValuePad.textFromInputPad);
+                    var valueTxtBox = _calculator.Eval(right, left);
 
-                txtBoxValue.Text = valueTxtBox.ToString();
-                txtScoreboard.Text = string.Empty;
+                    txtBoxValue.Text = valueTxtBox.ToString();
+                }
+                catch (ApplicationException ex)
+                {
+                    txtBoxValue.Text = string.Empty;
+                    MessageBox.Show(ex.Message);
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show(ex.Message);
+                    Close();
+                }
+                finally
+                {
+                    txtScoreboard.Text = string.Empty;
+                }
             }
         }
 
@@ -82,7 +116,7 @@ namespace Calculator
             }
         }
 
-        private (string textFromInputPad, string textFromOutputField) ValueTxt() => (txtScoreboard.Text, txtBoxValue.Text);
+        private (string left, string right) GetValuesToCount() => (txtScoreboard.Text, txtBoxValue.Text);
 
         private bool CheckUsedOperation() => txtBoxValue.Text.Length != 0 || txtScoreboard.Text.Length != 0;
     }
