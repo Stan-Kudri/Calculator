@@ -4,6 +4,9 @@ namespace Calculator.Domain
 {
     public class MathCalculator
     {
+        public const int DecimalPlace = 6;
+        public const char EqualTo = '=';
+
         private readonly static char[] Operation = new char[] { '+', '-', '*', '/', '=' };
         private char _pastOperation;
         private decimal _valueResult;
@@ -25,7 +28,7 @@ namespace Calculator.Domain
                 }
                 else if (Operation.Contains(_pastOperation))
                 {
-                    if (operation == '=')
+                    if (operation == EqualTo)
                     {
                         _pastOperation = operation;
                     }
@@ -38,7 +41,7 @@ namespace Calculator.Domain
             }
 
             _pastOperation = operation;
-            return Math.Round(_valueResult, 6);
+            return Math.Round(_valueResult, DecimalPlace);
         }
 
         public decimal Eval(string outputValue, string inputValueOperand)
@@ -48,21 +51,27 @@ namespace Calculator.Domain
 
             if (TryParseValue(inputValueOperand, out var secondValue))
             {
-                if (_pastOperation == '=')
+                if (_pastOperation == EqualTo)
                 {
                     _valueResult = secondValue;
                 }
                 else
                 {
                     _valueOperand = secondValue;
+
                     if (Operation.Contains(_pastOperation))
+                    {
                         _valueResult = Calculate(_valueResult, secondValue, _pastOperation);
+                    }
                 }
             }
             else if (inputValueOperand.Length == 0)
             {
                 if (_valueOperand == 0)
+                {
                     _valueOperand = _valueResult;
+                }
+
                 _valueResult = Calculate(_valueResult, _valueOperand, _pastOperation);
             }
             else if (outputValue.Length > 0 && inputValueOperand.Length > 0)
@@ -71,9 +80,11 @@ namespace Calculator.Domain
             }
 
             if (!Operation.Contains(_pastOperation))
-                _pastOperation = '=';
+            {
+                _pastOperation = EqualTo;
+            }
 
-            return Math.Round(_valueResult, 6);
+            return Math.Round(_valueResult, DecimalPlace);
         }
 
         private bool TryParseValue(string txt, out decimal result)
@@ -97,15 +108,14 @@ namespace Calculator.Domain
                 case '-':
                     return left - right;
                 case '*':
-                    {
-                        return left * right;
-                    }
+                    return left * right;
                 case '/':
                     {
                         if (right == 0)
                         {
                             throw new ApplicationException("Деление на 0 невозможно");
                         }
+
                         return left / right;
                     }
                 case '=':
@@ -114,9 +124,11 @@ namespace Calculator.Domain
                         {
                             return 0;
                         }
+
                         return right;
                     }
             }
+
             throw new OperationCanceledException("Неизвестный оператор");
         }
     }

@@ -4,6 +4,9 @@ namespace Calculator
 {
     public partial class FormCalculator : Form
     {
+        public const string Zero = "0";
+        public const char Comma = ',';
+
         private bool _numberSign = true;
         private MathCalculator _calculator;
 
@@ -15,15 +18,20 @@ namespace Calculator
 
         private void btnNumber_Click(object sender, EventArgs e)
         {
-            if (txtScoreboard.Text == "0")
+            if (txtScoreboard.Text == Zero)
+            {
                 txtScoreboard.Text = string.Empty;
+            }
+
             txtScoreboard.Text = txtScoreboard.Text + ((Button)sender).Text;
         }
 
         private void btnDecimalPoint_Click(object sender, EventArgs e)
         {
-            if (!txtScoreboard.Text.Contains(','))
-                txtScoreboard.Text = txtScoreboard.Text + ',';
+            if (!txtScoreboard.Text.Contains(Comma))
+            {
+                txtScoreboard.Text = txtScoreboard.Text + Comma;
+            }
         }
 
         private void btnCleanEntry_Click(object sender, EventArgs e)
@@ -35,9 +43,12 @@ namespace Calculator
 
         private void btnCancel_Click(object sender, EventArgs e)
         {
-            var lenght = txtScoreboard.Text.Length;
-            if (lenght != 0)
-                txtScoreboard.Text = txtScoreboard.Text.Remove(lenght - 1);
+            var length = txtScoreboard.Text.Length;
+
+            if (length != 0)
+            {
+                txtScoreboard.Text = txtScoreboard.Text.Remove(length - 1);
+            }
         }
 
         private void btnNumberSign_Click(object sender, EventArgs e)
@@ -52,6 +63,7 @@ namespace Calculator
                 try
                 {
                     var (left, right) = GetValuesToCount();
+
                     var operation = char.Parse(((Button)sender).Text);
 
                     var valueTxtBox = _calculator.Eval(right, left, operation);
@@ -106,11 +118,12 @@ namespace Calculator
 
         private void txtScoreboard_KeyPress(object sender, KeyPressEventArgs e)
         {
-            if (!char.IsControl(e.KeyChar) && !char.IsDigit(e.KeyChar) && (e.KeyChar != ','))
+            if (!char.IsControl(e.KeyChar) && !char.IsDigit(e.KeyChar) && (e.KeyChar != Comma))
             {
                 e.Handled = true;
             }
-            if (txtScoreboard.Text.Contains(',') && e.KeyChar != ',')
+
+            if (txtScoreboard.Text.Contains(Comma) && e.KeyChar != Comma)
             {
                 e.Handled = true;
             }
