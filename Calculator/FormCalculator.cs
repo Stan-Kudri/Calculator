@@ -16,7 +16,7 @@ namespace Calculator
             _calculator = new MathCalculator();
         }
 
-        private void btnNumber_Click(object sender, EventArgs e)
+        private void BtnNumber_Click(object sender, EventArgs e)
         {
             if (txtScoreboard.Text == Zero)
             {
@@ -26,7 +26,7 @@ namespace Calculator
             txtScoreboard.Text = txtScoreboard.Text + ((Button)sender).Text;
         }
 
-        private void btnDecimalPoint_Click(object sender, EventArgs e)
+        private void BtnDecimalPoint_Click(object sender, EventArgs e)
         {
             if (!txtScoreboard.Text.Contains(Comma))
             {
@@ -34,14 +34,14 @@ namespace Calculator
             }
         }
 
-        private void btnCleanEntry_Click(object sender, EventArgs e)
+        private void BtnCleanEntry_Click(object sender, EventArgs e)
         {
             txtScoreboard.Text = string.Empty;
             txtBoxValue.Text = string.Empty;
             _calculator = new MathCalculator();
         }
 
-        private void btnCancel_Click(object sender, EventArgs e)
+        private void BtnCancel_Click(object sender, EventArgs e)
         {
             var length = txtScoreboard.Text.Length;
 
@@ -51,12 +51,12 @@ namespace Calculator
             }
         }
 
-        private void btnNumberSign_Click(object sender, EventArgs e)
+        private void BtnNumberSign_Click(object sender, EventArgs e)
         {
             txtScoreboard.Text = _numberSign ? "-" + txtScoreboard.Text : txtScoreboard.Text.Replace("-", ""); _numberSign = !_numberSign;
         }
 
-        private void btnArithmeticOperation_Click(object sender, EventArgs e)
+        private void BtnArithmeticOperation_Click(object sender, EventArgs e)
         {
             if (CheckUsedOperation())
             {
@@ -87,7 +87,7 @@ namespace Calculator
             }
         }
 
-        private void btnEqualSign_Click(object sender, EventArgs e)
+        private void BtnEqualSign_Click(object sender, EventArgs e)
         {
             if (CheckUsedOperation())
             {
@@ -116,7 +116,7 @@ namespace Calculator
             }
         }
 
-        private void txtScoreboard_KeyPress(object sender, KeyPressEventArgs e)
+        private void TxtScoreboard_KeyPress(object sender, KeyPressEventArgs e)
         {
             if (!char.IsControl(e.KeyChar) && !char.IsDigit(e.KeyChar) && (e.KeyChar != Comma))
             {

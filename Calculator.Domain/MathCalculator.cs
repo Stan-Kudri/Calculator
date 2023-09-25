@@ -8,6 +8,7 @@ namespace Calculator.Domain
         public const char EqualTo = '=';
 
         private readonly static char[] Operation = new char[] { '+', '-', '*', '/', '=' };
+
         private char _pastOperation;
         private decimal _valueResult;
         private decimal _valueOperand;
@@ -15,10 +16,14 @@ namespace Calculator.Domain
         public decimal Eval(string outputValue, string inputValueOperand, char operation)
         {
             if (!Operation.Contains(operation))
+            {
                 throw new ArgumentException("Неверная арифметическая операция");
+            }
 
             if (TryParseValue(outputValue, out var firstValue))
+            {
                 _valueResult = firstValue;
+            }
 
             if (TryParseValue(inputValueOperand, out var secondValue))
             {
@@ -47,7 +52,9 @@ namespace Calculator.Domain
         public decimal Eval(string outputValue, string inputValueOperand)
         {
             if (TryParseValue(outputValue, out var firstValue))
+            {
                 _valueResult = firstValue;
+            }
 
             if (TryParseValue(inputValueOperand, out var secondValue))
             {
