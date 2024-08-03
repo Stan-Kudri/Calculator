@@ -60,6 +60,7 @@
             txtScoreboard.Name = "txtScoreboard";
             txtScoreboard.Size = new Size(226, 23);
             txtScoreboard.TabIndex = 0;
+            txtScoreboard.TextAlign = HorizontalAlignment.Right;
             txtScoreboard.KeyPress += TxtScoreboard_KeyPress;
             // 
             // btnOne
@@ -221,8 +222,8 @@
             // btnCancel
             // 
             btnCancel.BackColor = SystemColors.HighlightText;
-            btnCancel.BackgroundImage = (Image)resources.GetObject("btnCancel.BackgroundImage");
             btnCancel.BackgroundImageLayout = ImageLayout.Zoom;
+            btnCancel.Image = (Image)resources.GetObject("btnCancel.Image");
             btnCancel.Location = new Point(68, 56);
             btnCancel.Margin = new Padding(3, 2, 3, 2);
             btnCancel.Name = "btnCancel";
@@ -300,6 +301,7 @@
             txtBoxValue.ReadOnly = true;
             txtBoxValue.Size = new Size(168, 23);
             txtBoxValue.TabIndex = 20;
+            txtBoxValue.TextAlign = HorizontalAlignment.Right;
             // 
             // FormCalculator
             // 

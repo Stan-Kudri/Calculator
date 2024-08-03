@@ -16,7 +16,7 @@ namespace TestProjectCalculator
 
             for (var i = 0; i <= NumberIterations; i++)
             {
-                valueResult = mathCalculator.Eval(valueToString(valueResult), valueToString(valueOperand), '+');
+                valueResult = mathCalculator.Eval(ValueToString(valueResult), ValueToString(valueOperand), '+');
             }
 
             Assert.Equal(expectResult, valueResult);
@@ -31,7 +31,7 @@ namespace TestProjectCalculator
 
             for (var i = 0; i <= NumberIterations; i++)
             {
-                valueResult = mathCalculator.Eval(valueToString(valueResult), valueToString(valueOperand), '-');
+                valueResult = mathCalculator.Eval(ValueToString(valueResult), ValueToString(valueOperand), '-');
             }
 
             Assert.Equal(expectResult, valueResult);
@@ -46,7 +46,7 @@ namespace TestProjectCalculator
 
             for (var i = 0; i <= NumberIterations; i++)
             {
-                valueResult = mathCalculator.Eval(valueToString(valueResult), valueToString(valueOperand), '*');
+                valueResult = mathCalculator.Eval(ValueToString(valueResult), ValueToString(valueOperand), '*');
             }
 
             expectResult = System.Math.Round(expectResult, 6);
@@ -63,7 +63,7 @@ namespace TestProjectCalculator
 
             for (var i = 0; i <= NumberIterations; i++)
             {
-                valueResult = mathCalculator.Eval(valueToString(valueResult), valueToString(valueOperand), '/');
+                valueResult = mathCalculator.Eval(ValueToString(valueResult), ValueToString(valueOperand), '/');
             }
 
             expectResult = System.Math.Round(expectResult, 6);
@@ -71,6 +71,6 @@ namespace TestProjectCalculator
             Assert.Equal(expectResult, valueResult);
         }
 
-        private static string valueToString(decimal value) => value.ToString(CultureInfo.InvariantCulture);
+        private static string ValueToString(decimal value) => value.ToString(CultureInfo.InvariantCulture);
     }
 }

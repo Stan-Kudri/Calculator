@@ -8,13 +8,9 @@ namespace Calculator
         public const char Comma = ',';
 
         private bool _numberSign = true;
-        private MathCalculator _calculator;
+        private MathCalculator _calculator = new MathCalculator();
 
-        public FormCalculator()
-        {
-            InitializeComponent();
-            _calculator = new MathCalculator();
-        }
+        public FormCalculator() => InitializeComponent();
 
         private void BtnNumber_Click(object sender, EventArgs e)
         {
@@ -53,7 +49,8 @@ namespace Calculator
 
         private void BtnNumberSign_Click(object sender, EventArgs e)
         {
-            txtScoreboard.Text = _numberSign ? "-" + txtScoreboard.Text : txtScoreboard.Text.Replace("-", ""); _numberSign = !_numberSign;
+            txtScoreboard.Text = _numberSign ? "-" + txtScoreboard.Text : txtScoreboard.Text.Replace("-", "");
+            _numberSign = !_numberSign;
         }
 
         private void BtnArithmeticOperation_Click(object sender, EventArgs e)
@@ -131,6 +128,8 @@ namespace Calculator
 
         private (string left, string right) GetValuesToCount() => (txtScoreboard.Text, txtBoxValue.Text);
 
-        private bool CheckUsedOperation() => txtBoxValue.Text.Length != 0 || txtScoreboard.Text.Length != 0;
+        private bool CheckUsedOperation()
+            => txtBoxValue.Text.Length != 0
+                || txtScoreboard.Text.Length != 0;
     }
 }
