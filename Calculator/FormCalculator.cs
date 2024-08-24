@@ -35,6 +35,7 @@ namespace Calculator
             txtScoreboard.Text = string.Empty;
             txtBoxValue.Text = string.Empty;
             _calculator = new MathCalculator();
+            txtScoreboard.Focus();
         }
 
         private void BtnCancel_Click(object sender, EventArgs e)
@@ -60,12 +61,11 @@ namespace Calculator
                 try
                 {
                     var (left, right) = GetValuesToCount();
-
                     var operation = char.Parse(((Button)sender).Text);
-
                     var valueTxtBox = _calculator.Eval(right, left, operation);
 
                     txtBoxValue.Text = valueTxtBox.ToString();
+                    txtScoreboard.Focus();
                 }
                 catch (ApplicationException ex)
                 {
@@ -91,10 +91,11 @@ namespace Calculator
                 try
                 {
                     var (left, right) = GetValuesToCount();
-
                     var valueTxtBox = _calculator.Eval(right, left);
 
                     txtBoxValue.Text = valueTxtBox.ToString();
+
+                    txtScoreboard.Focus();
                 }
                 catch (ApplicationException ex)
                 {
