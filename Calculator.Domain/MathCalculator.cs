@@ -37,6 +37,7 @@ namespace Calculator.Domain
                     {
                         _pastOperation = operation;
                     }
+
                     _valueResult = Calculate(_valueResult, secondValue, _pastOperation);
                 }
             }
@@ -58,18 +59,11 @@ namespace Calculator.Domain
 
             if (TryParseValue(inputValueOperand, out var secondValue))
             {
-                if (_pastOperation == EqualTo)
-                {
-                    _valueResult = secondValue;
-                }
-                else
-                {
-                    _valueOperand = secondValue;
+                _valueOperand = secondValue;
 
-                    if (Operation.Contains(_pastOperation))
-                    {
-                        _valueResult = Calculate(_valueResult, secondValue, _pastOperation);
-                    }
+                if (Operation.Contains(_pastOperation))
+                {
+                    _valueResult = Calculate(_valueResult, secondValue, _pastOperation);
                 }
             }
             else if (inputValueOperand.Length == 0)
@@ -117,23 +111,13 @@ namespace Calculator.Domain
                 case '*':
                     return left * right;
                 case '/':
-                    {
-                        if (right == 0)
-                        {
-                            throw new ApplicationException("Деление на 0 невозможно");
-                        }
-
-                        return left / right;
-                    }
+                    return right == 0
+                            ? throw new ApplicationException("Деление на 0 невозможно")
+                            : left / right;
                 case '=':
-                    {
-                        if (left == 0 || right == 0)
-                        {
-                            return 0;
-                        }
-
-                        return right;
-                    }
+                    return left == 0 || right == 0
+                            ? 0
+                            : right;
             }
 
             throw new OperationCanceledException("Неизвестный оператор");
