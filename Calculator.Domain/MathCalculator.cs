@@ -7,7 +7,7 @@ namespace Calculator.Domain
         public const int DecimalPlace = 6;
         public const char EqualTo = '=';
 
-        private readonly static char[] Operation = new char[] { '+', '-', '*', '/', '=' };
+        private readonly static char[] Operation = ['+', '-', '*', '/', '='];
 
         private char _pastOperation;
         private decimal _valueResult;
