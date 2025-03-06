@@ -6,7 +6,7 @@
         xmlns:i="http://schemas.microsoft.com/xaml/behaviors"
         xmlns:local="clr-namespace:Calculator.WPF"
         mc:Ignorable="d"
-        Title="MainWindow" Height="600" Width="500">
+        Title="MainWindow" Height="350" Width="300">
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition/>
@@ -23,21 +23,22 @@
             <ColumnDefinition/>
             <ColumnDefinition/>
         </Grid.ColumnDefinitions>
-        
+
         <!--First Row-->
         <Label Grid.Column="0" Grid.ColumnSpan="4"
                Grid.Row="0" Grid.RowSpan="1"
-               FontSize="14"
+               FontSize="18"
                Margin="8 4"
                MinHeight="40"
                HorizontalContentAlignment="Right"
-               VerticalAlignment="Center" VerticalContentAlignment="Center">
+               VerticalAlignment="Center" VerticalContentAlignment="Center"
+               Content="{Binding NumberOutput, UpdateSourceTrigger=PropertyChanged}">
         </Label>
-        
+
         <!--Second Row-->
         <TextBox Grid.Column="0" Grid.ColumnSpan="4"
                Grid.Row="1" Grid.RowSpan="1"
-               FontSize="14"
+               FontSize="18"
                Margin="8 4"
                MinHeight="40"
                HorizontalContentAlignment="Right"
@@ -49,6 +50,166 @@
                 </i:EventTrigger>
             </i:Interaction.Triggers>
         </TextBox>
-        
+
+        <!--Third Row-->
+        <Button Margin="2 2 1 1"
+                Grid.Row="2" Grid.RowSpan="1"
+                Grid.Column="0" Grid.ColumnSpan="1"
+                FontSize="20"
+                Height="40"
+                Content="CE"
+                Command="{Binding ClearEntryCommand}">
+        </Button>
+        <Button Margin="1 2 1 1"       
+                Grid.Row="2" Grid.RowSpan="1"
+                Grid.Column="1" Grid.ColumnSpan="1"
+                FontSize="30"
+                Height="40"
+                Content="←"
+                Command="{Binding CancelCommand}">
+        </Button>
+        <Button Margin="1,5,1,3"       
+                Grid.Row="2" Grid.RowSpan="1"
+                Grid.Column="2" Grid.ColumnSpan="1"
+                FontSize="20" 
+                Height="40"
+                Content="+/−"
+                Command="{Binding NumberSignCommand}">
+        </Button>
+        <Button Margin="1 2 2 1"       
+                Grid.Row="2" Grid.RowSpan="1"
+                Grid.Column="3" Grid.ColumnSpan="1"
+                FontSize="20"
+                Height="40"
+                Content="+"
+                Command="{Binding PlusOperationCommand}">
+        </Button>
+
+        <!--Four Row-->
+        <Button Margin="2 2 1 1"
+                Grid.Row="3" Grid.RowSpan="1"
+                Grid.Column="0" Grid.ColumnSpan="1"
+                FontSize="20" 
+                Height="40"
+                Content="7"
+                Command="{Binding AddSevenNumberCommand}">
+        </Button>
+        <Button Margin="1 2 1 1"       
+                Grid.Row="3" Grid.RowSpan="1"
+                Grid.Column="1" Grid.ColumnSpan="1"
+                FontSize="20"
+                Height="40"
+                Content="8"
+                Command="{Binding AddEightNumberCommand}">
+        </Button>
+        <Button Margin="1 2 1 1"       
+                Grid.Row="3" Grid.RowSpan="1"
+                Grid.Column="2" Grid.ColumnSpan="1"
+                FontSize="20" 
+                Height="40"
+                Content="9"
+                Command="{Binding AddNineNumberCommand}">
+        </Button>
+        <Button Margin="1 2 2 1"       
+                Grid.Row="3" Grid.RowSpan="1"
+                Grid.Column="3" Grid.ColumnSpan="1"
+                FontSize="20" 
+                Height="40"
+                Content="−"
+                Command="{Binding MinusOperationCommand}">
+        </Button>
+
+        <!--Five Row-->
+        <Button Margin="2 2 1 1"
+                Grid.Row="4" Grid.RowSpan="1"
+                Grid.Column="0" Grid.ColumnSpan="1"
+                FontSize="20" 
+                Height="40"
+                Content="4"
+                Command="{Binding AddFourNumberCommand}">
+        </Button>
+        <Button Margin="1 2 1 1"       
+                Grid.Row="4" Grid.RowSpan="1"
+                Grid.Column="1" Grid.ColumnSpan="1"
+                FontSize="20"  
+                Height="40"
+                Content="5"
+                Command="{Binding AddFiveNumberCommand}">
+        </Button>
+        <Button Margin="1 2 1 1"       
+                Grid.Row="4" Grid.RowSpan="1"
+                Grid.Column="2" Grid.ColumnSpan="1"
+                FontSize="20"  
+                Height="40"
+                Content="6"
+                Command="{Binding AddSixNumberCommand}">
+        </Button>
+        <Button Margin="1 2 2 1"       
+                Grid.Row="4" Grid.RowSpan="1"
+                Grid.Column="3" Grid.ColumnSpan="1"
+                FontSize="20"  
+                Height="40"
+                Content="*"
+                Command="{Binding MultiplicationOperationCommand}">
+        </Button>
+
+        <!--Six Row-->
+        <Button Margin="2 2 1 1"
+                Grid.Row="5" Grid.RowSpan="1"
+                Grid.Column="0" Grid.ColumnSpan="1"
+                FontSize="20"
+                Height="40"
+                Content="1"
+                Command="{Binding AddOneNumberCommand}">
+        </Button>
+        <Button Margin="1 2 1 1"       
+                Grid.Row="5" Grid.RowSpan="1"
+                Grid.Column="1" Grid.ColumnSpan="1"
+                FontSize="20" 
+                Height="40"
+                Content="2"
+                Command="{Binding AddTwoNumberCommand}">
+        </Button>
+        <Button Margin="1 2 1 1"       
+                Grid.Row="5" Grid.RowSpan="1"
+                Grid.Column="2" Grid.ColumnSpan="1"
+                FontSize="20" 
+                Height="40"
+                Content="3"
+                Command="{Binding AddThreeNumberCommand}">
+        </Button>
+        <Button Margin="1 2 2 1"       
+                Grid.Row="5" Grid.RowSpan="1"
+                Grid.Column="3" Grid.ColumnSpan="1"
+                FontSize="20" 
+                Height="40"
+                Content="/"
+                Command="{Binding DivisionOperationCommand}">
+        </Button>
+
+        <!--Seven Row-->
+        <Button Margin="2 2 1 1"
+                Grid.Row="6" Grid.RowSpan="1"
+                Grid.Column="0" Grid.ColumnSpan="1"
+                FontSize="30" 
+                Height="40"
+                Content=",">
+        </Button>
+        <Button Margin="1 2 1 1"       
+                Grid.Row="6" Grid.RowSpan="1"
+                Grid.Column="1" Grid.ColumnSpan="1"
+                FontSize="20"
+                Height="40"
+                Content="0"
+                Command="{Binding AddZeroNumberCommand}">
+        </Button>
+        <Button Margin="1 2 1 1"       
+                Grid.Row="6" Grid.RowSpan="1"
+                Grid.Column="2" Grid.ColumnSpan="2"
+                FontSize="30"  
+                Height="40"
+                Content="="
+                Command="{Binding EqualSignCommand}">
+        </Button>
     </Grid>
 </Window>
