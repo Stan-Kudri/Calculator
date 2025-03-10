@@ -1,7 +1,7 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <root>
   <!--
-    Microsoft ResX Schema 
+    Microsoft ResX Schema
 
     Version 2.0
 
@@ -48,7 +48,7 @@
     value   : The object must be serialized with
             : System.Runtime.Serialization.Formatters.Binary.BinaryFormatter
             : and then encoded with base64 encoding.
-    
+
     mimetype: application/x-microsoft.net.object.soap.base64
     value   : The object must be serialized with
             : System.Runtime.Serialization.Formatters.Soap.SoapFormatter
@@ -120,12 +120,12 @@
   <assembly alias="System.Drawing" name="System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" />
   <data name="btnCancel.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
     <value>
-        iVBORw0KGgoAAAANSUhEUgAAABkAAAAZCAYAAADE6YVjAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8
-        YQUAAAAJcEhZcwAACxIAAAsSAdLdfvwAAADWSURBVEhL7ZQxCsIwFIYDKg4i7oKncNQD6KI38Ax6F130
-        DgoinsPBE9TJ3V3//5XU1qRUyKuL+eCD9zc0jzRpTCSSZwgf8BnoDU6hwwBycCYpjBFM0vJNF17gUpIO
-        XFFGAx7hVpIehSYbeIZNSS59uIYtSSms+YxjZWRNVvAKe5L8cMI9PMG2J5chTeaQG80Nr4ITHz7Mr8yH
-        NLnDBYsv6UC+Q1lX8buVkNr3xFL76SL2P9lJ0qPQhNg/np9PC6cJsXcXD0QoY+jcXRatW5gNJjDyfxjz
-        Ao3XUq9mzu5NAAAAAElFTkSuQmCC
+        iVBORw0KGgoAAAANSUhEUgAAABkAAAAZCAYAAADE6YVjAAAABGdBTUEAALGPC/xhBQAAAAlwSFlzAAAL
+        EQAACxEBf2RfkQAAANZJREFUSEvtlDEKwjAUhgMqDiLugqdw1APoojfwDHoXXfQOCiKew8ET1MndXf//
+        ldTWpFTIq4v54IP3NzSPNGlMJJJnCB/wGegNTqHDAHJwJimMEUzS8k0XXuBSkg5cUUYDHuFWkh6FJht4
+        hk1JLn24hi1JKaz5jGNlZE1W8Ap7kvxwwj08wbYnlyFN5pAbzQ2vghMfPsyvzIc0ucMFiy/pQL5DWVfx
+        u5WQ2vfEUvvpIvY/2UnSo9CE2D+en08LpwmxdxcPRChj6NxdFq1bmA0mMPJ/GPMCjddSr2bO7k0AAAAA
+        SUVORK5CYII=
 </value>
   </data>
 </root>

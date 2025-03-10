@@ -7,7 +7,7 @@ namespace Calculator.Domain
         public const int DecimalPlace = 6;
         public const char EqualTo = '=';
 
-        private readonly static char[] Operation = new char[] { '+', '-', '*', '/', '=' };
+        private readonly static char[] Operation = ['+', '-', 'х', '/', '='];
 
         private char _pastOperation;
         private decimal _valueResult;
@@ -108,7 +108,7 @@ namespace Calculator.Domain
                     return left + right;
                 case '-':
                     return left - right;
-                case '*':
+                case 'х':
                     return left * right;
                 case '/':
                     return right == 0

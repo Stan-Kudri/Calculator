@@ -129,8 +129,6 @@ namespace Calculator
 
         private (string left, string right) GetValuesToCount() => (txtScoreboard.Text, txtBoxValue.Text);
 
-        private bool CheckUsedOperation()
-            => txtBoxValue.Text.Length != 0
-                || txtScoreboard.Text.Length != 0;
+        private bool CheckUsedOperation() => txtBoxValue.Text.Length != 0 || txtScoreboard.Text.Length != 0;
     }
 }

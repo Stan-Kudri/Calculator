@@ -198,6 +198,7 @@
             // btnEqualSign
             // 
             btnEqualSign.BackColor = SystemColors.HighlightText;
+            btnEqualSign.Font = new Font("Segoe UI", 12F);
             btnEqualSign.Location = new Point(126, 254);
             btnEqualSign.Margin = new Padding(3, 2, 3, 2);
             btnEqualSign.Name = "btnEqualSign";
@@ -235,6 +236,7 @@
             // btnNumberSign
             // 
             btnNumberSign.BackColor = SystemColors.HighlightText;
+            btnNumberSign.Font = new Font("Segoe UI", 12F);
             btnNumberSign.Location = new Point(126, 56);
             btnNumberSign.Margin = new Padding(3, 2, 3, 2);
             btnNumberSign.Name = "btnNumberSign";
@@ -247,6 +249,7 @@
             // btnAddition
             // 
             btnAddition.BackColor = SystemColors.HighlightText;
+            btnAddition.Font = new Font("Segoe UI", 12F);
             btnAddition.Location = new Point(184, 56);
             btnAddition.Margin = new Padding(3, 2, 3, 2);
             btnAddition.Name = "btnAddition";
@@ -259,6 +262,7 @@
             // btnSubtraction
             // 
             btnSubtraction.BackColor = SystemColors.HighlightText;
+            btnSubtraction.Font = new Font("Segoe UI", 12F);
             btnSubtraction.Location = new Point(184, 106);
             btnSubtraction.Margin = new Padding(3, 2, 3, 2);
             btnSubtraction.Name = "btnSubtraction";
@@ -271,18 +275,20 @@
             // btnMultiplication
             // 
             btnMultiplication.BackColor = SystemColors.HighlightText;
+            btnMultiplication.Font = new Font("Segoe UI", 12F);
             btnMultiplication.Location = new Point(184, 155);
             btnMultiplication.Margin = new Padding(3, 2, 3, 2);
             btnMultiplication.Name = "btnMultiplication";
             btnMultiplication.Size = new Size(52, 45);
             btnMultiplication.TabIndex = 18;
-            btnMultiplication.Text = "*";
+            btnMultiplication.Text = "х";
             btnMultiplication.UseVisualStyleBackColor = false;
             btnMultiplication.Click += BtnArithmeticOperation_Click;
             // 
             // btnDivision
             // 
             btnDivision.BackColor = SystemColors.HighlightText;
+            btnDivision.Font = new Font("Segoe UI", 12F);
             btnDivision.Location = new Point(184, 205);
             btnDivision.Margin = new Padding(3, 2, 3, 2);
             btnDivision.Name = "btnDivision";
