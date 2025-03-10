@@ -14,15 +14,17 @@ namespace Calculator.Domain.ViewModel
         public const char PlusOperator = '+';
         public const char MinusOperator = '-';
         public const char DivisionOperator = '/';
-        public const char MultiplicationOperator = '*';
+        public const char MultiplicationOperator = 'х';
 
         private MathCalculator _calculator = new MathCalculator();
+
         private string _numberInput = string.Empty;
+        private string _numberOutput = string.Empty;
 
         private bool _isPlusNumberSign = true;
 
-        [ObservableProperty] private string _numberOutput = string.Empty;
-
+        [ObservableProperty] private string _strOutput = string.Empty;
+        [ObservableProperty] private string _operationOutput = string.Empty;
 
         public string NumberInput
         {
@@ -35,6 +37,17 @@ namespace Calculator.Domain.ViewModel
                 }
             }
         }
+
+        public string NumberOutput
+        {
+            get => _numberOutput;
+            set
+            {
+                SetProperty(ref _numberOutput, value);
+                StrOutput = _numberOutput + OperationOutput;
+            }
+        }
+
 
         [RelayCommand]
         private void OnPreviewTextInput(object parameter)
@@ -102,50 +115,35 @@ namespace Calculator.Domain.ViewModel
             }
         }
 
-        [RelayCommand]
-        private void AddZeroNumber() => AddNumber(0);
+        [RelayCommand] private void AddZeroNumber() => AddNumber(0);
 
-        [RelayCommand]
-        private void AddOneNumber() => AddNumber(1);
+        [RelayCommand] private void AddOneNumber() => AddNumber(1);
 
-        [RelayCommand]
-        private void AddTwoNumber() => AddNumber(2);
+        [RelayCommand] private void AddTwoNumber() => AddNumber(2);
 
-        [RelayCommand]
-        private void AddThreeNumber() => AddNumber(3);
+        [RelayCommand] private void AddThreeNumber() => AddNumber(3);
 
-        [RelayCommand]
-        private void AddFourNumber() => AddNumber(4);
+        [RelayCommand] private void AddFourNumber() => AddNumber(4);
 
-        [RelayCommand]
-        private void AddFiveNumber() => AddNumber(5);
+        [RelayCommand] private void AddFiveNumber() => AddNumber(5);
 
-        [RelayCommand]
-        private void AddSixNumber() => AddNumber(6);
+        [RelayCommand] private void AddSixNumber() => AddNumber(6);
 
-        [RelayCommand]
-        private void AddSevenNumber() => AddNumber(7);
+        [RelayCommand] private void AddSevenNumber() => AddNumber(7);
 
-        [RelayCommand]
-        private void AddEightNumber() => AddNumber(8);
+        [RelayCommand] private void AddEightNumber() => AddNumber(8);
 
-        [RelayCommand]
-        private void AddNinetNumber() => AddNumber(9);
-
+        [RelayCommand] private void AddNinetNumber() => AddNumber(9);
 
         private void AddNumber(int number) => NumberInput = NumberInput + number;
 
-        [RelayCommand]
-        private void PlusOperation() => ArithmeticOperation(PlusOperator);
+        [RelayCommand] private void PlusOperation() => ArithmeticOperation(PlusOperator);
 
-        [RelayCommand]
-        private void MinusOperation() => ArithmeticOperation(MinusOperator);
+        [RelayCommand] private void MinusOperation() => ArithmeticOperation(MinusOperator);
 
-        [RelayCommand]
-        private void DivisionOperation() => ArithmeticOperation(DivisionOperator);
+        [RelayCommand] private void DivisionOperation() => ArithmeticOperation(DivisionOperator);
 
-        [RelayCommand]
-        private void MultiplicationOperation() => ArithmeticOperation(MultiplicationOperator);
+        [RelayCommand] private void MultiplicationOperation() => ArithmeticOperation(MultiplicationOperator);
 
         private void ArithmeticOperation(char operation)
         {
@@ -155,7 +153,7 @@ namespace Calculator.Domain.ViewModel
                 {
                     var (left, right) = GetValuesToCount();
                     var valueTxtBox = _calculator.Eval(right, left, operation);
-
+                    OperationOutput = operation.ToString();
                     NumberOutput = valueTxtBox.ToString();
                 }
                 catch (ApplicationException ex)
