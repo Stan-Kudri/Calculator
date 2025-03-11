@@ -46,7 +46,7 @@ namespace TestProjectCalculator
 
             for (var i = 0; i <= NumberIterations; i++)
             {
-                valueResult = mathCalculator.Eval(ValueToString(valueResult), ValueToString(valueOperand), '*');
+                valueResult = mathCalculator.Eval(ValueToString(valueResult), ValueToString(valueOperand), 'õ');
             }
 
             expectResult = System.Math.Round(expectResult, 6);

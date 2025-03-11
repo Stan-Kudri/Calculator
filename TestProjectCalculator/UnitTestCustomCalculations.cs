@@ -83,7 +83,7 @@ namespace TestProjectCalculator
         {
             var mathCalculator = new MathCalculator();
 
-            valueResult = mathCalculator.Eval(ValueToString(valueResult), string.Empty, '*');
+            valueResult = mathCalculator.Eval(ValueToString(valueResult), string.Empty, 'х');
 
             for (var i = 0; i < numberIterations; i++)
             {
@@ -100,7 +100,7 @@ namespace TestProjectCalculator
         {
             var mathCalculator = new MathCalculator();
 
-            valueResult = mathCalculator.Eval(ValueToString(valueResult), ValueToString(valueOperand), '*');
+            valueResult = mathCalculator.Eval(ValueToString(valueResult), ValueToString(valueOperand), 'х');
             valueResult = mathCalculator.Eval(ValueToString(valueResult), ValueToString(valueOperand));
 
             for (var i = 0; i < numberIterations - 1; i++)
