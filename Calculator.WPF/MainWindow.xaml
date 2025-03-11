@@ -30,7 +30,7 @@
                Grid.Row="0" Grid.RowSpan="1"
                FontSize="18"
                Margin="8 4"
-               MinHeight="40"
+               MinHeight="35"
                HorizontalContentAlignment="Right"
                VerticalAlignment="Center" VerticalContentAlignment="Center"
                Content="{Binding StrOutput, UpdateSourceTrigger=PropertyChanged}">
@@ -41,10 +41,11 @@
                  Grid.Row="1" Grid.RowSpan="1"
                  FontSize="18"
                  Margin="8 4"
-                 MinHeight="40"
+                 MinHeight="35"
                  HorizontalContentAlignment="Right"
                  VerticalAlignment="Center" VerticalContentAlignment="Center"
                  AcceptsReturn="False"
+                 BorderBrush="CadetBlue"
                  x:Name="TextInput"
                  Text="{Binding NumberInput, UpdateSourceTrigger=PropertyChanged}">
             <i:Interaction.Triggers>
