@@ -28,5 +28,5 @@ jobs:
     - name: Restore dependencies
       run: dotnet restore     
         
-    - name: Test
-      run: dotnet test "Calculator/TestProjectCalculator/TestProjectCalculator.csproj" --no-restore --verbosity normal
+    - name: Test 
+      run: dotnet test "TestProjectCalculator/TestProjectCalculator.csproj" --no-restore --verbosity normal
