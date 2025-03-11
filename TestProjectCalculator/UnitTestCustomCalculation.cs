@@ -4,7 +4,7 @@ using Xunit;
 
 namespace TestProjectCalculator
 {
-    public class UnitTestCustomCalculations
+    public class UnitTestCustomCalculation
     {
         [Theory]
         [InlineData(21, 5, 126)]
