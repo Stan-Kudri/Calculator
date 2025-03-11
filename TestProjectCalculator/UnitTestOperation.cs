@@ -1,4 +1,4 @@
-using Calculator.Domain;
+﻿using Calculator.Domain;
 using System.Globalization;
 using Xunit;
 
@@ -46,7 +46,7 @@ namespace TestProjectCalculator
 
             for (var i = 0; i <= NumberIterations; i++)
             {
-                valueResult = mathCalculator.Eval(ValueToString(valueResult), ValueToString(valueOperand), '*');
+                valueResult = mathCalculator.Eval(ValueToString(valueResult), ValueToString(valueOperand), 'х');
             }
 
             expectResult = System.Math.Round(expectResult, 6);
