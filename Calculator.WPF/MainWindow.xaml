@@ -6,7 +6,7 @@
         xmlns:i="http://schemas.microsoft.com/xaml/behaviors"
         xmlns:local="clr-namespace:Calculator.WPF"
         mc:Ignorable="d"
-        Title="MainWindow" Height="350" Width="300"
+        Title="Calculator" Height="350" Width="300"
         WindowStartupLocation="CenterOwner">
     <Grid Margin="6">
         <Grid.RowDefinitions>
