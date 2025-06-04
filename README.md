@@ -1,6 +1,6 @@
 # Calculator (WPF/WinForms)
 
-This is a simple calculator project in WPF/WinForms. The project contains tests to check the correctness of the operations.
+This is a project with calculator implementation on WPF/WinForms. Also the project contains unit tests.
 
 ## WPF 
 ![](WPFCalculator.png)
