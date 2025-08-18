@@ -65,7 +65,9 @@ namespace Calculator.Domain.ViewModel
         {
             NumberOutput = string.Empty;
             NumberInput = string.Empty;
-            _calculator = new MathCalculator();
+            OperationOutput = string.Empty;
+            StrOutput = string.Empty;
+            _calculator = new();
         }
 
         [RelayCommand]
@@ -86,34 +88,7 @@ namespace Calculator.Domain.ViewModel
             _isPlusNumberSign = !_isPlusNumberSign;
         }
 
-        [RelayCommand]
-        private void EqualSign()
-        {
-            if (CheckUsedOperation())
-            {
-                try
-                {
-                    var (left, right) = GetValuesToCount();
-                    var valueTxtBox = _calculator.Eval(right, left);
-
-                    NumberOutput = valueTxtBox.ToString();
-                }
-                catch (ApplicationException ex)
-                {
-                    NumberOutput = string.Empty;
-                    MessageBox.Show(ex.Message);
-                }
-                catch (Exception ex)
-                {
-                    MessageBox.Show(ex.Message);
-                    return;
-                }
-                finally
-                {
-                    NumberInput = string.Empty;
-                }
-            }
-        }
+        [RelayCommand] private void EqualSign() => Operation('=');
 
         [RelayCommand] private void AddZeroNumber() => AddNumber(0);
 
@@ -137,44 +112,45 @@ namespace Calculator.Domain.ViewModel
 
         private void AddNumber(int number) => NumberInput = NumberInput + number;
 
-        [RelayCommand] private void PlusOperation() => ArithmeticOperation(PlusOperator);
+        [RelayCommand] private void PlusOperation() => Operation(PlusOperator);
 
-        [RelayCommand] private void MinusOperation() => ArithmeticOperation(MinusOperator);
+        [RelayCommand] private void MinusOperation() => Operation(MinusOperator);
 
-        [RelayCommand] private void DivisionOperation() => ArithmeticOperation(DivisionOperator);
+        [RelayCommand] private void DivisionOperation() => Operation(DivisionOperator);
 
-        [RelayCommand] private void MultiplicationOperation() => ArithmeticOperation(MultiplicationOperator);
+        [RelayCommand] private void MultiplicationOperation() => Operation(MultiplicationOperator);
 
-        private void ArithmeticOperation(char operation)
+        private void Operation(char? operation = null)
         {
-            if (CheckUsedOperation())
+            if (NumberInput.Length == 0 && NumberOutput.Length == 0)
             {
-                try
+                return;
+            }
+            try
+            {
+                if (operation != null)
                 {
-                    var (left, right) = GetValuesToCount();
-                    var valueTxtBox = _calculator.Eval(right, left, operation);
                     OperationOutput = operation.ToString();
-                    NumberOutput = valueTxtBox.ToString();
+                    NumberOutput = _calculator.Eval(NumberOutput, NumberInput, (char)operation).ToString();
                 }
-                catch (ApplicationException ex)
+                else
                 {
-                    NumberOutput = string.Empty;
-                    MessageBox.Show(ex.Message);
-                }
-                catch (Exception ex)
-                {
-                    MessageBox.Show(ex.Message);
-                    return;
-                }
-                finally
-                {
-                    NumberInput = string.Empty;
+                    NumberOutput = _calculator.Eval(NumberOutput, NumberInput).ToString();
                 }
             }
+            catch (ApplicationException ex)
+            {
+                NumberOutput = string.Empty;
+                MessageBox.Show(ex.Message);
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
+            finally
+            {
+                NumberInput = string.Empty;
+            }
         }
-
-        private (string left, string right) GetValuesToCount() => (NumberInput, NumberOutput);
-
-        private bool CheckUsedOperation() => NumberInput.Length != 0 || NumberOutput.Length != 0;
     }
 }

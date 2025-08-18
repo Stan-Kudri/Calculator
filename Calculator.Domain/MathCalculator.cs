@@ -7,7 +7,7 @@ namespace Calculator.Domain
         public const int DecimalPlace = 6;
         public const char EqualTo = '=';
 
-        private readonly static char[] Operation = ['+', '-', 'х', '/', '='];
+        private readonly static HashSet<char> Operation = new() { '+', '-', 'х', '/', '=' };
 
         private char _pastOperation;
         private decimal _valueResult;
@@ -47,7 +47,7 @@ namespace Calculator.Domain
             }
 
             _pastOperation = operation;
-            return Math.Round(_valueResult, DecimalPlace);
+            return Round(_valueResult);
         }
 
         public decimal Eval(string outputValue, string inputValueOperand)
@@ -63,10 +63,11 @@ namespace Calculator.Domain
 
                 if (Operation.Contains(_pastOperation))
                 {
+
                     _valueResult = Calculate(_valueResult, secondValue, _pastOperation);
                 }
             }
-            else if (inputValueOperand.Length == 0)
+            else if (string.IsNullOrEmpty(inputValueOperand))
             {
                 if (_valueOperand == 0)
                 {
@@ -85,42 +86,25 @@ namespace Calculator.Domain
                 _pastOperation = EqualTo;
             }
 
-            return Math.Round(_valueResult, DecimalPlace);
+            return Round(_valueResult);
         }
 
         private bool TryParseValue(string txt, out decimal result)
-        {
-            if (decimal.TryParse(txt, NumberStyles.AllowDecimalPoint | NumberStyles.AllowLeadingSign, CultureInfo.InvariantCulture, out var values))
-            {
-                result = values;
-                return true;
-            }
-
-            result = default;
-            return false;
-        }
+            => decimal.TryParse(txt, NumberStyles.AllowDecimalPoint | NumberStyles.AllowLeadingSign, CultureInfo.InvariantCulture, out result);
 
         private static decimal Calculate(decimal left, decimal right, char operation)
         {
-            switch (operation)
+            return operation switch
             {
-                case '+':
-                    return left + right;
-                case '-':
-                    return left - right;
-                case 'х':
-                    return left * right;
-                case '/':
-                    return right == 0
-                            ? throw new ApplicationException("Деление на 0 невозможно")
-                            : left / right;
-                case '=':
-                    return left == 0 || right == 0
-                            ? 0
-                            : right;
-            }
-
-            throw new OperationCanceledException("Неизвестный оператор");
+                '+' => left + right,
+                '-' => left - right,
+                'х' => left * right,
+                '/' => right != 0 ? left / right : throw new ApplicationException("Деление на 0 невозможно"),
+                '=' => (left == 0 && right == 0) ? 0 : right,
+                _ => throw new OperationCanceledException("Неизвестный оператор")
+            };
         }
+
+        private static decimal Round(decimal value) => Math.Round(value, DecimalPlace);
     }
 }
