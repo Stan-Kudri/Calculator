@@ -52,10 +52,10 @@ namespace Calculator.Domain.ViewModel
         [RelayCommand]
         private void OnPreviewTextInput(object parameter)
         {
-            if (parameter is TextCompositionEventArgs e)
+            if (parameter is TextCompositionEventArgs e && e.Text != null)
             {
                 // Разрешаем цифры, точку, запятую и минус
-                string newStr = NumberInput + e.Text;
+                var newStr = (NumberInput ?? string.Empty) + e.Text;
                 e.Handled = !newStr.TryIsMatchStr();
             }
         }
@@ -110,7 +110,7 @@ namespace Calculator.Domain.ViewModel
 
         [RelayCommand] private void AddNinetNumber() => AddNumber(9);
 
-        private void AddNumber(int number) => NumberInput = NumberInput + number;
+        private void AddNumber(int number) => NumberInput = (NumberInput ?? string.Empty) + number;
 
         [RelayCommand] private void PlusOperation() => Operation(PlusOperator);
 
@@ -130,7 +130,7 @@ namespace Calculator.Domain.ViewModel
             {
                 if (operation != null)
                 {
-                    OperationOutput = operation.ToString();
+                    OperationOutput = operation.ToString() ?? string.Empty;
                     NumberOutput = _calculator.Eval(NumberOutput, NumberInput, (char)operation).ToString();
                 }
                 else

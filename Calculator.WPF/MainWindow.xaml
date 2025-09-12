@@ -46,7 +46,7 @@
                  VerticalAlignment="Center" VerticalContentAlignment="Center"
                  AcceptsReturn="False"
                  BorderBrush="Transparent"
-                 x:Name="TextInput"
+                 x:Name="InputTextBox"
                  Text="{Binding NumberInput, UpdateSourceTrigger=PropertyChanged}">
             <i:Interaction.Triggers>
                 <i:EventTrigger EventName="PreviewTextInput">
